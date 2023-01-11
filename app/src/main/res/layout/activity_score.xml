@@ -43,4 +43,18 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/score_BTN_back"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:text="back"
+        android:textColor="@color/white"
+        app:cornerRadius="50dp"
+        app:strokeColor="@color/white" />
 </RelativeLayout>

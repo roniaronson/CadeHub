@@ -1,17 +1,23 @@
 package com.example.ronisproject.support;
 
 public class ScoreData {
-    int place;
     String email;
     int score;
+    int place = -99;
 
     public ScoreData() {
     }
 
-    public ScoreData(int place, String email, int score) {
-        this.place = place;
+    public ScoreData(String email, int score) {
         this.email = email;
         this.score = score;
+        this.place = -99;
+    }
+
+    public ScoreData(String email, int score, int place) {
+        this.email = email;
+        this.score = score;
+        this.place = place;
     }
 
     public int getPlace() {
@@ -36,5 +42,14 @@ public class ScoreData {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return "ScoreData{" +
+                "place=" + place +
+                ", email='" + email + '\'' +
+                ", score=" + score +
+                '}';
     }
 }

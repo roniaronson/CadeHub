@@ -3,6 +3,8 @@ package com.example.ronisproject.http.score;
 import android.os.AsyncTask;
 
 import com.example.ronisproject.http.MyHTTPInterface;
+import com.example.ronisproject.support.ScoreData;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,8 +13,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Arrays;
 
 public class Score extends AsyncTask<Void, Void, Boolean> {
+    public static ScoreData[] GLOBAL_SCORES;
     private String game;
     private MyHTTPInterface mListener;
 
@@ -53,11 +57,24 @@ public class Score extends AsyncTask<Void, Void, Boolean> {
             // Read the response
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
             String output;
+            String json = "";
             while ((output = br.readLine()) != null) {
-                System.out.println(output);
+                json += output;
+                System.out.println(json);
             }
 
             // TODO - need to implement the data into the score tables.
+
+            Gson gson = new Gson();
+            GLOBAL_SCORES = gson.fromJson(json, ScoreData[].class);
+            int index = 1;
+
+            for (ScoreData score : GLOBAL_SCORES) {
+                System.out.println(score);
+                score.setPlace(index);
+                index ++;
+                System.out.println(score);
+            }
 
             conn.disconnect();
             return true;
